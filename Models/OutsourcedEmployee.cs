@@ -20,5 +20,10 @@ namespace Task2InheritanceAndPolimorphism.Models
         {
             return (base.Payment() + AdditionalCharge) * 1.16;
         }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()} | Additional charge: ${AdditionalCharge}";
+        }
     }
 }

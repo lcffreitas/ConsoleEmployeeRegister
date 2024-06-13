@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using Task2InheritanceAndPolimorphism.Methods;
 using Task2InheritanceAndPolimorphism.Models;
 
@@ -8,5 +9,7 @@ internal class Program
     {
         RegisterEmployees.AddEmployee();
         EmployeeLister.ListEmployees();
+        FilesCreater.CreateDirectory();
+        FilesCreater.CreateFile();
     }
 }

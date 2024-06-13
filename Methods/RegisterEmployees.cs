@@ -9,12 +9,22 @@ namespace Task2InheritanceAndPolimorphism.Methods
 {
     public class RegisterEmployees
     {
-        public static void AddEmployee() 
+        public static void AddEmployee()
         {
-            int id = 1;
             bool condition = true;
+
+            string filePath = @"c:\Employees\employees.txt";
+
+            if (File.Exists(filePath))
+            { 
+            Verification.IdVerification();
+            }
+
+            int updatedId = Verification.maxId;
+
             while (condition) 
             {
+                
                 bool isOutsourced = false;
                 bool askingIfOutsourced = true;
                 while (askingIfOutsourced)
@@ -36,6 +46,7 @@ namespace Task2InheritanceAndPolimorphism.Methods
                         Console.WriteLine("Unexpected answer!");
                     }
                 }
+                
 
                 Console.Write("Name: ");
                 string name = Console.ReadLine();
@@ -50,22 +61,23 @@ namespace Task2InheritanceAndPolimorphism.Methods
                 {
                     Console.Write("Additional charge:");
                     double additionalCharge = double.Parse(Console.ReadLine());
-                    Employee.Employees.Add(new OutsourcedEmployee(id,name,hours,valuePerHour,additionalCharge));
+                    Employee.Employees.Add(new OutsourcedEmployee(updatedId, name,hours,valuePerHour,additionalCharge));
                 }
                 else
                 {
-                    Employee.Employees.Add(new Employee(id,name,hours,valuePerHour));
+                    Employee.Employees.Add(new Employee(updatedId, name,hours,valuePerHour));
                 }
-                id++;
                 bool askingIfAddMore = true;
                 while (askingIfAddMore)
                 {
-                    Console.Write("Wanna add more? (Y/N): ");
+                    Console.Write("Do you want to add more? (Y/N): ");
                     string addMoreAnswer = Console.ReadLine().ToUpper().Trim();
                     if (addMoreAnswer == "Y")
                     {
                         condition = true;
                         askingIfAddMore = false;
+                        updatedId++;
+                        Verification.maxId = updatedId;
                     } 
                     else if (addMoreAnswer == "N")
                     {
